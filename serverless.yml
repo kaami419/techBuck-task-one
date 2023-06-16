@@ -1,0 +1,121 @@
+plugins:
+  - serverless-offline
+
+service: serverless-with-sequelize
+frameworkVersion: '3'
+
+
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  profile: default
+  memorySize: 256 # optional, in MB, default is 1024
+  stage: dev
+  httpApi:
+    cors: true
+
+functions:
+  getAllUsers:
+    handler: Controller/users.getAll
+    events:
+      - httpApi:
+          path: /users/allUsers
+          method: get
+
+  getUserById:
+    handler: Controller/users.getById
+    events:
+      - httpApi:
+          path: /users/getSingleUser/{id}
+          method: get
+
+  createUser:
+    handler: Controller/users.create
+    events:
+      - httpApi:
+          path: /users/create
+          method: post
+
+  updateUser:
+    handler: Controller/users.update
+    events:
+      - httpApi:
+          path: /users/update/{id}
+          method: put
+
+  deleteUser:
+    handler: Controller/users.deleteUser
+    events:
+      - httpApi:
+          path: /users/delete/{id}
+          method: delete
+
+  loginUser:
+    handler: Controller/users.login
+    events:
+      - httpApi:
+          path: /users/login
+          method: post
+
+  createProducts:
+    handler: Controller/products.createProduct
+    events:
+      - httpApi:
+          path: /products/create
+          method: post        
+
+  getProducts:
+    handler: Controller/products.getProducts
+    events:
+      - httpApi:
+          path: /products/allProducts
+          method: get   
+
+  getSingleProduct:
+     handler: Controller/products.getProductById
+     events: 
+        - httpApi:
+             path: /product/singleProduct/{id}    
+             method: get
+  updateProduct:
+     handler: Controller/products.updateProduct       
+     events: 
+        - httpApi:
+             path: /product/update/{id}
+             method: put
+  deleteProduct:
+     handler: Controller/products.deleteProduct       
+     events: 
+        - httpApi:
+             path: /product/delete/{id}
+             method: delete           
+
+  saveOrderDetails:
+    handler: Controller/orders.saveOrderDetails
+    events:
+      - httpApi:
+          path: /order/createOrder
+          method: post
+
+  getUserOrders:
+    handler: Controller/orders.getUserOrders
+    events:
+      - httpApi:
+          path: /order/getOrder
+          method: get
+
+  updateUserOrder:
+      handler: Controller/orders.updateOrder
+      events:
+        - httpApi:
+            path: /order/updateOrder/{id}
+            method: put
+
+  deleteOrder:
+      handler: Controller/orders.deleteOrder   
+      events: 
+        - httpApi:
+            path: /order/delete/{id}
+            method: delete 
