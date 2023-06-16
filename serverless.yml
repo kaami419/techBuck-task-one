@@ -119,3 +119,59 @@ functions:
         - httpApi:
             path: /order/delete/{id}
             method: delete 
+
+  createRole:
+      handler: Controller/roles.createRoles
+      events: 
+        - httpApi:
+            path: /roles/create
+            method: post           
+
+  getRole:
+      handler: Controller/roles.getRoles
+      events:
+         -  httpApi:
+              path: /roles/get
+              method: get
+
+  updateRole:
+      handler: Controller/roles.updateRole
+      events:
+         -  httpApi:
+              path: /roles/update/{id}
+              method: put   
+
+  deleteRole:
+      handler: Controller/roles.deleteRole
+      events:
+         -  httpApi:
+              path: /roles/delete/{id}
+              method: delete                       
+
+  createPermission:
+      handler: Controller/permissions.createPermission
+      events: 
+        - httpApi:
+            path: /permissions/create
+            method: post  
+
+  getPermission:
+      handler: Controller/permissions.getPermissions
+      events:
+         -  httpApi:
+              path: /permissions/get
+              method: get                              
+
+  updatePermission:
+      handler: Controller/permissions.updatePermission
+      events:
+         -  httpApi:
+              path: /permissions/update/{id}
+              method: put 
+              
+  deletePermission:
+      handler: Controller/permissions.deletePermission
+      events:
+         -  httpApi:
+              path: /permissions/delete/{id}
+              method: delete                            

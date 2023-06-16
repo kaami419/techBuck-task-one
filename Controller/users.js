@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 // user ki creation
 
 const create = async (event) => {
-  const { name, email, password } = JSON.parse(event.body);
+  const { name, email, password} = JSON.parse(event.body);
 
   try {
     // Hash the password
@@ -19,7 +19,7 @@ const create = async (event) => {
     return {
       statusCode: 201,
       headers: {
-        "Content-Type": "application/json", // Correct the content type to "application/json"
+        "Content-Type": "application/json", 
       },
       body: JSON.stringify(user),
     };
@@ -81,6 +81,7 @@ const login = async (event) => {
 
 // all users ka data
 const getAll = async (event) => {
+  
   try {
     const users = await User.findAll();
     return {
