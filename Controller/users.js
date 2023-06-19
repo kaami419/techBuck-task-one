@@ -26,7 +26,7 @@ const create = async (event) => {
       headers: {
         "Content-Type": "application/json", 
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({name:user.name, email: user.email}),
     };
   } catch (error) {
     console.log(error);

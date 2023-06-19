@@ -2,10 +2,12 @@ const { Chatroom } = require('../Models/chatroom');
 
 
 const createChatroom = async (event) => {
-  const { name, userId } = JSON.parse(event.body);
+  const  name = JSON.parse(event.body);
+  const userId = event.queryStringParameters.userId;
 
   try {
-    const chatroom = await Chatroom.create({ name, userId: userId });
+    const chatroom = await Chatroom.create(name, {userId:userId} );
+    console.log("user id here =========>", userId);
     //await ChatroomMember.create({ chatroom_id: chatroom.id, user_id: userId, joined_at: new Date() });
 
     return{
