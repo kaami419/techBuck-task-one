@@ -11,6 +11,11 @@ const create = async (event) => {
   const { name, email, password} = JSON.parse(event.body);
 
   try {
+   
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return res.status(400).json({ message: 'User with this email already exists.' });
+      }
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10); // Await the bcrypt.hash() function to get the hashed password
 
@@ -81,7 +86,7 @@ const login = async (event) => {
 
 // all users ka data
 const getAll = async (event) => {
-  
+
   try {
     const users = await User.findAll();
     return {

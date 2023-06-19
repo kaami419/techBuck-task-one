@@ -11,7 +11,7 @@ provider:
   runtime: nodejs14.x
   region: us-east-1
   profile: default
-  memorySize: 256 # optional, in MB, default is 1024
+  memorySize: 256 
   stage: dev
   httpApi:
     cors: true
@@ -175,3 +175,39 @@ functions:
          -  httpApi:
               path: /permissions/delete/{id}
               method: delete                            
+
+  createChatroom:
+      handler: Controller/chatrooms.createChatroom
+      events:
+         -  httpApi:
+               path: /chatrooms/create
+               method: post
+
+  getChatrooms:
+      handler: Controller/chatrooms.getChatrooms
+      events:
+         -  httpApi:
+               path: /chatrooms/getAll
+               method: get             
+
+  deleteChatroom:
+      handler: Controller/chatrooms.deleteChatroom
+      events:
+         -  httpApi:
+               path: /chatrooms/delete/{id}
+               method: delete
+
+  getMessages:
+      handler: Controller/messages.getMessages
+      events:
+         -  httpApi:
+               path: /messages/get
+               method: get  
+
+  createMessage:
+      handler: Controller/messages.createMessage
+      events:
+         -  httpApi:
+               path: /messages/create
+               method: post  
+                           
